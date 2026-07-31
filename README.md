@@ -1,16 +1,38 @@
-# React + Vite
+# 👨‍💻 Raman Kumar Sahu | Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A showcase of my journey, technical skills, and full-stack development projects. 
 
-Currently, two official plugins are available:
+[ramanhero.vercel.app](https://ramanhero.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 💡 About This Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This repository contains the source code for my personal portfolio website. Designed with a focus on clean UI/UX, the site features minimalist aesthetics and modern design patterns (such as bento grids and skeletal loading) to provide a smooth, responsive, and engaging user experience. 
 
-## Expanding the ESLint configuration
+It serves as a central hub for my work, highlighting my expertise in frontend architecture and full-stack development.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+This project is built for speed and performance using a modern web development stack:
+
+*   **Frontend:** React.js
+*   **Build Tool:** Vite (for Lightning-fast HMR and optimized builds)
+*   **Deployment:** Vercel
+
+## ✨ Key Features
+
+*   **Responsive Design:** Flawless experience across desktop, tablet, and mobile devices.
+*   **Project Showcase:** Detailed breakdowns of my latest full-stack projects and technical challenges.
+*   **Modern UI/UX:** Clean, minimalist interfaces prioritizing readability and smooth navigation.
+*   **Performance Optimized:** Fast load times powered by Vite's efficient build process.
+
+---
+
+## 🚀 Local Development
+
+If you want to explore the code or run the portfolio locally, follow these steps:
+
+**1. Clone the repository**
+```bash
+git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
