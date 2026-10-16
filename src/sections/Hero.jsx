@@ -63,22 +63,22 @@ export default function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="section-content relative h-screen flex flex-col justify-between px-6 md:px-12 pt-24 pb-8 overflow-hidden bg-cover bg-[position:center]"
+      className="section-content relative min-h-[100dvh] flex flex-col justify-between px-5 sm:px-8 md:px-12 pt-24 sm:pt-28 pb-6 sm:pb-8 overflow-hidden bg-cover bg-[position:center]"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(${heroBg})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${heroBg})`,
       }}
     >
       {/* Main heading area */}
-      <div className="flex-1 flex flex-col justify-center">
+      <div className="flex-1 flex flex-col justify-center my-4 sm:my-0">
         {/* Left heading */}
-        <div ref={leftRef} className="mb-4">
+        <div ref={leftRef} className="mb-3 sm:mb-4">
           <div className="text-reveal">
-            <h1 className="hero-line font-heading text-[clamp(2rem,6vw,7rem)] font-extrabold leading-[0.92] tracking-tight text-white translate-y-full">
+            <h1 className="hero-line font-heading text-[clamp(1.75rem,7.5vw,7rem)] font-extrabold leading-[0.92] tracking-tight text-white translate-y-full">
               BUILDING PLATFORMS
             </h1>
           </div>
           <div className="text-reveal">
-            <h1 className="hero-line font-heading text-[clamp(2rem,6vw,7rem)] font-extrabold leading-[0.92] tracking-tight text-white translate-y-full">
+            <h1 className="hero-line font-heading text-[clamp(1.75rem,7.5vw,7rem)] font-extrabold leading-[0.92] tracking-tight text-white translate-y-full">
               THAT
             </h1>
           </div>
@@ -87,12 +87,12 @@ export default function Hero() {
         {/* Right heading */}
         <div ref={rightRef} className="self-end text-right">
           <div className="text-reveal">
-            <span className="hero-line font-heading text-[clamp(2rem,6vw,7rem)] font-extrabold leading-[0.95] tracking-tight text-white translate-y-full inline-block">
+            <span className="hero-line font-heading text-[clamp(1.75rem,7.5vw,7rem)] font-extrabold leading-[0.95] tracking-tight text-white translate-y-full inline-block">
               PUSH THE
             </span>
           </div>
           <div className="text-reveal">
-            <span className="hero-line font-heading text-[clamp(2rem,6vw,7rem)] font-extrabold leading-[0.95] tracking-tight text-white translate-y-full inline-block">
+            <span className="hero-line font-heading text-[clamp(1.75rem,7.5vw,7rem)] font-extrabold leading-[0.95] tracking-tight text-white translate-y-full inline-block">
               LIMITS FURTHER
             </span>
           </div>
@@ -100,19 +100,20 @@ export default function Hero() {
       </div>
 
       {/* Thin separator */}
-      <div className="w-full h-[1px] bg-white/15 mb-6" />
+      <div className="w-full h-[1px] bg-white/15 mb-4 sm:mb-6" />
 
       {/* Fixed Bottom Bar */}
       <div
         ref={bottomBarRef}
-        className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 opacity-0 translate-y-4 mb-4 md:mb-8"
+        className="flex flex-col md:flex-row items-start md:items-end justify-between gap-5 md:gap-6 opacity-0 translate-y-4 mb-2 md:mb-8"
       >
         {/* Bracket CTA */}
-        <BracketButton href={resume} target="_blank" rel="noopener noreferrer">View Resume</BracketButton>
+        <div className="shrink-0">
+          <BracketButton href={resume} target="_blank" rel="noopener noreferrer">View Resume</BracketButton>
+        </div>
 
         {/* Description */}
-        <p className="font-mono text-[12px] md:text-[12px] tracking-[0.1em] text-text-off-white leading-relaxed max-w-lg text-justify drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">
-
+        <p className="font-mono text-[11px] sm:text-[12px] tracking-[0.08em] sm:tracking-[0.1em] text-text-off-white leading-relaxed max-w-lg text-left md:text-justify drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]">
           B.Tech(AI) Student with proven expertise in Full-Stack Java Development. Adept at developing end-to-end robust web applications using React, Spring Boot, MySQL and System Architecture. Driven by hands-on project development.
         </p>
 

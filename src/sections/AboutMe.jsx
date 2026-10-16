@@ -80,26 +80,57 @@ export default function AboutMe() {
   }, []);
 
   return (
-    <section id="aboutme" className="w-full min-h-[900px] bg-white py-32 px-6">
+    <section id="aboutme" className="w-full min-h-0 md:min-h-[900px] bg-white py-16 sm:py-24 md:py-32 px-5 sm:px-6">
       <div className="max-w-[900px] mx-auto text-center w-full">
-        <h2 className="text-[19px] font-bold text-[#1a1a2e] mb-5">
+        <h2 className="text-[18px] sm:text-[19px] font-bold text-[#1a1a2e] mb-4 sm:mb-5">
           What I do
         </h2>
 
-        <p className="text-[14px] leading-[1.9] text-[#8a8f98] max-w-[620px] mx-auto">
+        <p className="text-[13px] sm:text-[14px] leading-[1.8] sm:leading-[1.9] text-[#8a8f98] max-w-[620px] mx-auto px-2">
           Full-stack developer focused on the Java ecosystem and TypeScript frontends. I write secure Spring Boot backends, design optimized database schemas, and build event-driven microservices that handle real-time data pipelines.
         </p>
 
-        <h3 className="text-[19px] font-bold text-[#1a1a2e] mt-16">
+        <h3 className="text-[18px] sm:text-[19px] font-bold text-[#1a1a2e] mt-12 sm:mt-16">
           Tech I Work With
         </h3>
 
-        <p className="text-[11px] leading-[1.9] text-[#8a8f98] mb-10">
-          hover it!
+        <p className="text-[11px] leading-[1.9] text-[#8a8f98] mb-8 md:mb-10">
+          <span className="md:hidden">Core tech stack &amp; capabilities</span>
+          <span className="hidden md:inline">hover it!</span>
         </p>
 
-        {/* Cards flex to make room for whichever one is hovered */}
-        <div className="flex gap-8 items-start justify-center">
+        {/* Mobile View: Clean 2-column or 1-column card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 md:hidden text-left">
+          {CATEGORIES.map((cat) => (
+            <div
+              key={cat.id}
+              className="bg-[#f4f5f7] rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-black/5"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 shrink-0 flex items-center justify-center">
+                  {typeof cat.icon === "string" ? (
+                    <img
+                      src={cat.icon}
+                      alt={cat.label}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    cat.icon
+                  )}
+                </div>
+                <span className="text-[13.5px] font-bold text-[#1a1a2e]">
+                  {cat.label}
+                </span>
+              </div>
+              <p className="text-[12px] leading-relaxed text-[#4a4f58]">
+                {cat.items}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View: Cards flex to make room for whichever one is hovered */}
+        <div className="hidden md:flex gap-4 lg:gap-8 items-start justify-center">
           {CATEGORIES.map((cat, index) => {
             const isHovered = hoveredIndex === index;
             const grow =
@@ -126,11 +157,6 @@ export default function AboutMe() {
                     className="flex items-center justify-center shrink-0"
                     style={{ width: 32, height: 32 }}
                   >
-                    {/* Image-path icons (java/springboot/react/mongodb/git) need an
-                        actual <img> tag to render — a bare string import just
-                        prints as text/nothing when dropped straight into JSX.
-                        The Core Concepts icon is already a JSX <svg>, so it
-                        renders fine as-is. This check handles both cases. */}
                     {typeof cat.icon === "string" ? (
                       <img
                         src={cat.icon}

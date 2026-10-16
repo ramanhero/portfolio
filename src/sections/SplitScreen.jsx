@@ -374,10 +374,10 @@ function CardPopover({ card, cards, currentIndex, onClose, onNavigate }) {
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-10 bg-black/85 backdrop-blur-md cursor-none"
       onClick={onClose}
     >
-      {/* ◀ Left arrow button with hover tooltip */}
+      {/* ◀ Left arrow button with hover tooltip (desktop only) */}
       {hasPrev && (
         <div
-          className="group relative"
+          className="group relative hidden md:block"
           style={{
             position: 'fixed',
             left: '24px',
@@ -410,10 +410,10 @@ function CardPopover({ card, cards, currentIndex, onClose, onNavigate }) {
         </div>
       )}
 
-      {/* ▶ Right arrow button with hover tooltip */}
+      {/* ▶ Right arrow button with hover tooltip (desktop only) */}
       {hasNext && (
         <div
-          className="group relative"
+          className="group relative hidden md:block"
           style={{
             position: 'fixed',
             right: '24px',
@@ -448,7 +448,7 @@ function CardPopover({ card, cards, currentIndex, onClose, onNavigate }) {
 
       {/* Popover body */}
       <div
-        className={`relative w-full max-w-4xl ${card.bg} ${card.text} border border-current/15 rounded-card p-8 md:p-12 max-h-[85vh] overflow-y-auto flex flex-col justify-between cursor-none`}
+        className={`relative w-full max-w-4xl ${card.bg} ${card.text} border border-current/15 rounded-card p-5 sm:p-8 md:p-12 max-h-[88vh] overflow-y-auto flex flex-col justify-between`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -456,27 +456,27 @@ function CardPopover({ card, cards, currentIndex, onClose, onNavigate }) {
           onClick={onClose}
           onMouseEnter={setCursorHover}
           onMouseLeave={setCursorDefault}
-          className="absolute top-6 right-6 font-mono text-xs uppercase tracking-widest hover:bg-current/10 px-3 py-1.5 rounded cursor-none transition-colors"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 font-mono text-[11px] sm:text-xs uppercase tracking-widest hover:bg-current/10 px-2.5 sm:px-3 py-1.5 rounded transition-colors"
         >
           [ CLOSE ]
         </button>
         {/* Header inside popover */}
-        <div className="mb-4">
+        <div className="mb-4 pr-16 sm:pr-20">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-75">
             PROJECT DETAILS / {card.num}
           </span>
-          <h2 className="font-heading text-2xl md:text-3xl font-bold uppercase tracking-tight mt-2 leading-tight pr-12">
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-tight mt-2 leading-tight">
             {card.title}
           </h2>
         </div>
         {/* Popover Content */}
-        <div className="grid grid-cols-1 gap-8 mt-6 border-t border-current/15 pt-8">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 mt-4 sm:mt-6 border-t border-current/15 pt-6 sm:pt-8">
           {card.architecturalDepth && (
             <div>
-              <h4 className="font-heading text-base md:text-lg font-bold uppercase tracking-wide mb-4">
+              <h4 className="font-heading text-base md:text-lg font-bold uppercase tracking-wide mb-3 sm:mb-4">
                 The Architectural Depth
               </h4>
-              <ul className="space-y-2 font-mono text-[11px] md:text-xs leading-relaxed opacity-90">
+              <ul className="space-y-2.5 font-mono text-[11px] sm:text-xs leading-relaxed opacity-90">
                 {card.architecturalDepth.map((point, idx) => (
                   <li key={idx} className="flex gap-2 items-start">
                     <span className="font-bold mt-0.5 select-none shrink-0">→</span>
@@ -488,10 +488,10 @@ function CardPopover({ card, cards, currentIndex, onClose, onNavigate }) {
           )}
           {card.technicalComplexity && (
             <div>
-              <h4 className="font-heading text-base md:text-lg font-bold uppercase tracking-wide mb-4">
+              <h4 className="font-heading text-base md:text-lg font-bold uppercase tracking-wide mb-3 sm:mb-4">
                 The Technical Complexity &amp; Challenges
               </h4>
-              <ul className="space-y-2 font-mono text-[11px] md:text-xs leading-relaxed opacity-90">
+              <ul className="space-y-2.5 font-mono text-[11px] sm:text-xs leading-relaxed opacity-90">
                 {card.technicalComplexity.map((point, idx) => (
                   <li key={idx} className="flex gap-2 items-start">
                     <span className="font-bold mt-0.5 select-none shrink-0">→</span>
@@ -501,6 +501,27 @@ function CardPopover({ card, cards, currentIndex, onClose, onNavigate }) {
               </ul>
             </div>
           )}
+        </div>
+
+        {/* Mobile Navigation controls */}
+        <div className="flex md:hidden items-center justify-between pt-5 mt-6 border-t border-current/15">
+          <button
+            disabled={!hasPrev}
+            onClick={() => onNavigate(currentIndex - 1)}
+            className="font-mono text-[11px] uppercase tracking-wider px-3 py-1.5 rounded border border-current/20 disabled:opacity-25"
+          >
+            ← Prev
+          </button>
+          <span className="font-mono text-[10px] uppercase tracking-widest opacity-60">
+            {currentIndex + 1} / {cards.length}
+          </span>
+          <button
+            disabled={!hasNext}
+            onClick={() => onNavigate(currentIndex + 1)}
+            className="font-mono text-[11px] uppercase tracking-wider px-3 py-1.5 rounded border border-current/20 disabled:opacity-25"
+          >
+            Next →
+          </button>
         </div>
       </div>
     </div>,
@@ -517,10 +538,10 @@ function SplitCard({ card, index, onOpenPopover }) {
 
   if (card.image) {
     return (
-      <div className={`scroll-card ${card.bg} ${card.text} p-8 md:p-10 rounded-card flex flex-col justify-between min-h-[60vh] md:min-h-[85vh] relative`}>
+      <div className={`scroll-card ${card.bg} ${card.text} p-5 sm:p-8 md:p-10 rounded-[22px] sm:rounded-card flex flex-col justify-between min-h-0 md:min-h-[85vh] relative`}>
         {/* Top: heading and logo */}
-        <div className="flex justify-between items-start gap-4 mb-4">
-          <h3 className="font-heading text-[clamp(1.2rem,2.2vw,1.8rem)] font-bold uppercase leading-tight max-w-[80%]">
+        <div className="flex justify-between items-start gap-4 mb-3 sm:mb-4">
+          <h3 className="font-heading text-[clamp(1.15rem,3.5vw,1.8rem)] font-bold uppercase leading-tight max-w-[78%]">
             {card.title}
           </h3>
           <CardIcon card={card} index={index} />
@@ -530,7 +551,7 @@ function SplitCard({ card, index, onOpenPopover }) {
           onClick={openPopover}
           onMouseEnter={setCursorHover}
           onMouseLeave={setCursorDefault}
-          className=" mx-auto overflow-hidden rounded-[8px] cursor-none aspect-[16/9] w-full max-w-md flex items-center justify-center bg-black/10 relative group"
+          className="mx-auto overflow-hidden rounded-[8px] aspect-[16/9] w-full max-w-md flex items-center justify-center bg-black/10 relative group"
         >
           <img
             src={card.image}
@@ -545,12 +566,12 @@ function SplitCard({ card, index, onOpenPopover }) {
           </div>
         </div>
         {/* Paragraph (Action-Oriented Bullet Points) */}
-        <div className="flex-1 flex flex-col justify-center my-3">
+        <div className="flex-1 flex flex-col justify-center my-3 sm:my-4">
           {card.bullets ? (
-            <ul className="space-y-4 font-mono text-[11px] md:text-[12px] leading-relaxed opacity-90">
+            <ul className="space-y-3 sm:space-y-4 font-mono text-[11px] md:text-[12px] leading-relaxed opacity-90">
               {card.bullets.map((bullet, i) => (
                 <li key={i} className="flex gap-2 items-start">
-                  <span className="text-current font-bold mt-0.5 select-none">→</span>
+                  <span className="text-current font-bold mt-0.5 select-none shrink-0">→</span>
                   <span>{bullet}</span>
                 </li>
               ))}
@@ -562,49 +583,47 @@ function SplitCard({ card, index, onOpenPopover }) {
           )}
         </div>
         {/* Bottom border + number + full screen button */}
-        <div className="flex justify-between items-center border-t border-current/20 pt-4 mt-2">
+        <div className="flex justify-between items-center border-t border-current/20 pt-3 sm:pt-4 mt-2">
           <span className="font-mono text-[11px] tracking-[0.15em]">{card.num}</span>
           {card.fullScreenIcon && (
             <button
               onClick={openPopover}
               onMouseEnter={setCursorHover}
               onMouseLeave={setCursorDefault}
-              className="w-10 h-10 flex items-center justify-center bg-transparent hover:scale-110 active:scale-95 transition-transform duration-200 cursor-none rounded-full border border-current/15 text-current"
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-transparent hover:scale-110 active:scale-95 transition-transform duration-200 rounded-full border border-current/15 text-current"
               aria-label="Open fullscreen details"
             >
-              {/* Inline SVG replaces the <img> tag entirely */}
               <svg
-                xmlns="http://w3.org"
+                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-5 h-5 opacity-80 hover:opacity-100 transition-opacity"
+                className="w-4 h-4 sm:w-5 sm:h-5 opacity-80 hover:opacity-100 transition-opacity"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75v4.5m0-4.5h-4.5m4.5 0L15 9m5.25 11.25v-4.5m0 4.5h-4.5m4.5 0L15 15" />
               </svg>
             </button>
           )}
         </div>
-
       </div>
     );
   }
 
   return (
-    <div className={`scroll-card ${card.bg} ${card.text} p-8 md:p-12 rounded-card flex flex-col justify-between min-h-[50vh] md:min-h-[80vh]`}>
+    <div className={`scroll-card ${card.bg} ${card.text} p-6 sm:p-8 md:p-12 rounded-[22px] sm:rounded-card flex flex-col justify-between min-h-0 md:min-h-[80vh]`}>
       <div className="flex justify-between items-start gap-4">
-        <h3 className="font-heading text-[clamp(1.3rem,2.5vw,2rem)] font-bold uppercase leading-tight max-w-[70%]">
+        <h3 className="font-heading text-[clamp(1.15rem,3.5vw,2rem)] font-bold uppercase leading-tight max-w-[75%]">
           {card.title}
         </h3>
         <CardIcon card={card} index={index} />
       </div>
-      <div className="flex-1 flex flex-col justify-start mt-16">
-        <p className="font-heading text-base md:text-lg leading-relaxed opacity-85 whitespace-pre-line">
+      <div className="flex-1 flex flex-col justify-start mt-6 sm:mt-10 md:mt-16">
+        <p className="font-heading text-sm sm:text-base md:text-lg leading-relaxed opacity-85 whitespace-pre-line">
           {card.description}
         </p>
       </div>
-      <div className="flex justify-between items-center pt-2">
+      <div className="flex justify-between items-center pt-3 sm:pt-4 border-t border-current/10 mt-4">
         <span className="font-mono text-[11px] tracking-[0.15em]">{card.num}</span>
       </div>
     </div>
@@ -664,26 +683,28 @@ export default function SplitScreen() {
   }, [showAll]); // re-run when cards expand so new cards animate in
 
   return (
-    <section id="caseStudies" ref={sectionRef} className="section-content">
+    <section id="caseStudies" ref={sectionRef} className="section-content overflow-hidden">
       {/* === INVESTORS === */}
-      <div id="investor-section" className="relative grid grid-cols-1 md:grid-cols-2 min-h-[250vh]">
+      <div id="investor-section" className="relative grid grid-cols-1 md:grid-cols-2 min-h-0 md:min-h-[250vh]">
         {/* Sticky left panel — CSS sticky, grid-aware, never jumps */}
-        <div className="bg-bg-dark flex flex-col justify-center px-8 md:px-16 py-20 md:py-0 self-start md:sticky md:top-0 md:h-screen">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-teal mb-6">
+        <div className="bg-bg-dark flex flex-col justify-center px-6 sm:px-8 md:px-16 py-14 sm:py-20 md:py-0 self-start md:sticky md:top-0 md:h-screen">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-teal mb-4 sm:mb-6">
             FEATURED WORK
           </p>
-          <h2 className="font-heading text-[clamp(2rem,4vw,4rem)] font-bold text-white leading-[0.98] uppercase mb-6">
+          <h2 className="font-heading text-[clamp(1.85rem,5.5vw,4rem)] font-bold text-white leading-[0.98] uppercase mb-4 sm:mb-6">
             DISCOVER<br />MY HIGHEST<br />IMPACT RESULTS.
           </h2>
-          <div className="w-[450px] h-[1px] bg-white/20 mb-6" />
-          <p className="font-mono text-[11px] text-text-off-white leading-relaxed max-w-sm uppercase tracking-wide mb-8">
+          <div className="w-full max-w-[450px] h-[1px] bg-white/20 mb-4 sm:mb-6" />
+          <p className="font-mono text-[11px] text-text-off-white leading-relaxed max-w-sm uppercase tracking-wide mb-6 sm:mb-8">
             EXAMINE MY TOP ENGINEERING WORKS AND DIVE INTO MY CUSTOM MICROSERVICES, RUNTIME SANDBOXES, AND LOW-LATENCY DATA PIPELINES.
           </p>
-          <BracketButton onClick={() => openPopover(0)}>ARCHITECTURE OVERVIEW</BracketButton>
+          <div className="inline-block">
+            <BracketButton onClick={() => openPopover(0)}>ARCHITECTURE OVERVIEW</BracketButton>
+          </div>
         </div>
 
         {/* Scrolling cards right */}
-        <div className="flex flex-col gap-6 p-6 md:p-8 justify-center">
+        <div className="flex flex-col gap-5 sm:gap-6 p-4 sm:p-6 md:p-8 justify-center">
           {visibleInvestorCards.map((card, i) => (
             <SplitCard key={i} card={card} index={i} onOpenPopover={openPopover} />
           ))}
@@ -693,8 +714,8 @@ export default function SplitScreen() {
               onClick={() => setShowAll(true)}
               onMouseEnter={setCursorHover}
               onMouseLeave={setCursorDefault}
-              className="cursor-none self-center font-mono text-[12px] uppercase tracking-[0.25em] mt-2 mb-4 transition-opacity duration-300 hover:opacity-60"
-              style={{ color: 'rgba(255, 255, 255, 0.4)' }}
+              className="self-center font-mono text-[12px] uppercase tracking-[0.25em] mt-2 mb-4 transition-opacity duration-300 hover:opacity-60"
+              style={{ color: 'rgba(255, 255, 255, 0.6)' }}
             >
               more
             </button>
@@ -714,28 +735,30 @@ export default function SplitScreen() {
       )}
 
       {/* === LIVE SPRINTS === */}
-      {/* DOM order: cards first (left col), sticky panel second (right col) */}
-      <div id="founder-section" className="relative grid grid-cols-1 md:grid-cols-2 min-h-[250vh]">
-        {/* Scrolling cards — left column on desktop */}
-        <div className="flex flex-col gap-6 p-6 md:p-8 justify-center">
+      {/* On mobile: heading panel is rendered FIRST (order-1), cards second (order-2) */}
+      <div id="founder-section" className="relative grid grid-cols-1 md:grid-cols-2 min-h-0 md:min-h-[250vh]">
+        {/* Scrolling cards — left column on desktop, second on mobile */}
+        <div className="order-2 md:order-1 flex flex-col gap-5 sm:gap-6 p-4 sm:p-6 md:p-8 justify-center">
           {founderCards.map((card, i) => (
             <SplitCard key={i} card={card} index={i} onOpenPopover={() => { }} />
           ))}
         </div>
 
-        {/* Sticky right panel */}
-        <div className="bg-bg-dark flex flex-col justify-center px-8 md:px-16 py-20 md:py-0 self-start md:sticky md:top-0 md:h-screen">
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-teal mb-6">
+        {/* Sticky right panel — right column on desktop, first on mobile */}
+        <div className="order-1 md:order-2 bg-bg-dark flex flex-col justify-center px-6 sm:px-8 md:px-16 py-14 sm:py-20 md:py-0 self-start md:sticky md:top-0 md:h-screen">
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent-teal mb-4 sm:mb-6">
             LIVE SPRINTS
           </p>
-          <h2 className="font-heading text-[clamp(2rem,4vw,4rem)] font-bold text-white leading-[0.98] uppercase mb-6">
+          <h2 className="font-heading text-[clamp(1.85rem,5.5vw,4rem)] font-bold text-white leading-[0.98] uppercase mb-4 sm:mb-6">
             PRESSURE PROVEN,<br />RELIABLE in<br />fast-paced environments.
           </h2>
-          <div className="w-12 h-[1px] bg-white/20 mb-6" />
-          <p className="font-mono text-[11px] text-text-off-white leading-relaxed max-w-sm uppercase tracking-wide mb-8">
+          <div className="w-12 h-[1px] bg-white/20 mb-4 sm:mb-6" />
+          <p className="font-mono text-[11px] text-text-off-white leading-relaxed max-w-sm uppercase tracking-wide mb-6 sm:mb-8">
             HACKATHONS ARE MESSY. HERE IS HOW I NAVIGATE API THROTTLING, HANDSHAKE FAILURES, AND LAST-MINUTE CODING EMERGENCIES WHEN THE CLOCK HITS ZERO.
           </p>
-          <BracketButton href="https://www.linkedin.com/in/ramansahu/">View Linkedin</BracketButton>
+          <div className="inline-block">
+            <BracketButton href="https://www.linkedin.com/in/ramansahu/">View Linkedin</BracketButton>
+          </div>
         </div>
       </div>
     </section>

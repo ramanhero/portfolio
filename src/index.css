@@ -30,6 +30,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     cursor: none;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   body {
@@ -37,7 +39,24 @@
     background-color: var(--bg-dark);
     color: var(--text-white);
     overflow-x: hidden;
+    width: 100%;
     cursor: none;
+  }
+
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    html,
+    body,
+    a,
+    button {
+      cursor: auto !important;
+    }
+    .custom-cursor {
+      display: none !important;
+    }
+    .card-no-cursor,
+    .card-no-cursor * {
+      cursor: auto !important;
+    }
   }
 
   ::selection {

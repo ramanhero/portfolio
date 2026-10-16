@@ -14,19 +14,19 @@ export default function Footer() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
-    <footer id="footer" className="section-content relative bg-bg-dark flex flex-col justify-end overflow-hidden pt-32">
-      <div className="flex justify-end pb-12 w-full">
+    <footer id="footer" className="section-content relative bg-bg-dark flex flex-col justify-end overflow-hidden pt-16 sm:pt-24 md:pt-32">
+      <div className="flex justify-end pb-8 sm:pb-12 w-full">
         {/* Right: Orange CTA Card with rounded corners */}
-        <div className="w-full md:w-[65%] lg:w-[50%] bg-accent-orange p-10 md:p-14 lg:p-20 flex flex-col justify-between min-h-[95vh] rounded-tl-[40px] rounded-bl-[40px] text-[#1A1A1A]">
+        <div className="w-full md:w-[65%] lg:w-[50%] bg-accent-orange p-6 sm:p-10 md:p-14 lg:p-20 flex flex-col justify-between min-h-0 md:min-h-[90vh] rounded-t-[32px] md:rounded-tr-none md:rounded-tl-[40px] md:rounded-bl-[40px] text-[#1A1A1A]">
 
           {/* TOP SECTION */}
-          <div className="flex flex-col xl:flex-row justify-between items-start gap-12">
+          <div className="flex flex-col xl:flex-row justify-between items-start gap-8 sm:gap-12">
             {/* Top Left: Text & Button */}
             <div className="flex-1 max-w-[420px]">
-              <h2 className="font-heading text-4xl w-full whitespace-nowrap font-medium text-[#1A1A1A] uppercase leading-[1.05] mb-6">
+              <h2 className="font-heading text-3xl sm:text-4xl w-full font-medium text-[#1A1A1A] uppercase leading-[1.05] mb-4 sm:mb-6">
                 Ready to Build.
               </h2>
-              <p className="font-mono text-[10px] md:text-[11px] font-bold uppercase tracking-widest leading-loose mb-12 text-[#1A1A1A]">
+              <p className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider sm:tracking-widest leading-relaxed sm:leading-loose mb-8 sm:mb-12 text-[#1A1A1A]">
                 I am currently transitioning into full-time SDE-1 roles. If you
                 want to discuss system architecture, specific module
                 implementation, or potential engineering opportunities, let's
@@ -40,16 +40,16 @@ export default function Footer() {
             </div>
 
             {/* Top Right: User Logo */}
-            <div className="flex-shrink-0 mt-8 xl:mt-0 xl:self-end pr-0 xl:pr-12">
-              <svg width="220" height="220" viewBox="0 0 100 100" fill="none" className="text-[#1A1A1A]">
+            <div className="flex-shrink-0 mt-4 sm:mt-8 xl:mt-0 self-center sm:self-start xl:self-end pr-0 xl:pr-12">
+              <svg viewBox="0 0 100 100" fill="none" className="text-[#1A1A1A] w-24 h-24 sm:w-36 sm:h-36 md:w-44 md:h-44">
                 <path d="M 32.5 67.5 V 22.5 H 62.5 A 15 15 0 0 1 62.5 52.5 H 47.5 L 67.5 77.5" stroke="currentColor" strokeWidth="20" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </div>
 
           {/* BOTTOM SECTION */}
-          <div className="mt-auto pt-24 flex justify-center md:justify-start">
-            <div className="flex items-center gap-8">
+          <div className="mt-8 sm:mt-auto pt-8 sm:pt-16 md:pt-24 flex justify-center md:justify-start">
+            <div className="flex items-center gap-4 sm:gap-6 md:gap-8 flex-wrap justify-center">
               {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -57,11 +57,11 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="group flex items-center justify-center w-14 h-14 rounded-full border border-[#1A1A1A]/30 text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-accent-orange hover:border-[#1A1A1A] transition-colors duration-300"
+                  className="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#1A1A1A]/30 text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-accent-orange hover:border-[#1A1A1A] transition-colors duration-300"
                   onMouseEnter={setCursorHover}
                   onMouseLeave={setCursorDefault}
                 >
-                  <Icon className="w-6 h-6" />
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
               ))}
             </div>
@@ -70,16 +70,16 @@ export default function Footer() {
       </div>
 
       {/* Fine print bar */}
-      <div className="w-full pt-4 pb-8 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 border-t border-white/5">
-        <p className="font-mono text-[10px] md:text-[11px] text-white/40 uppercase tracking-widest whitespace-nowrap">
+      <div className="w-full pt-4 pb-8 px-4 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 border-t border-white/5 text-center">
+        <p className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest">
           Site by Raman Sahu
         </p>
         <span className="hidden md:inline text-white/20">·</span>
-        <p className="font-mono text-[10px] md:text-[11px] text-white/40 uppercase tracking-widest whitespace-nowrap">
+        <p className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest">
           Engineered with React, Tailwind &amp; Vite
         </p>
         <span className="hidden md:inline text-white/20">·</span>
-        <p className="font-mono text-[10px] md:text-[11px] text-white/40 uppercase tracking-widest whitespace-nowrap">
+        <p className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest">
           © 2026 All Rights Reserved
         </p>
       </div>
@@ -111,32 +111,32 @@ function ContactModal({ isOpen, onClose, onCursorEnter, onCursorLeave }) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center px-6 transition-opacity duration-300 ease-out ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      className={`fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6 transition-opacity duration-300 ease-out ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       onTransitionEnd={handleTransitionEnd}
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/70"
+        className="absolute inset-0 bg-black/75 backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Card */}
       <div
-        className={`relative w-full max-w-[420px] bg-accent-orange text-[#1A1A1A] rounded-[24px] p-10 transition-all duration-300 ease-out ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        className={`relative w-full max-w-[420px] bg-accent-orange text-[#1A1A1A] rounded-[24px] p-6 sm:p-10 transition-all duration-300 ease-out ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
           }`}
       >
         <button
           onClick={onClose}
           onMouseEnter={onCursorEnter}
           onMouseLeave={onCursorLeave}
-          className="absolute top-6 right-6 font-mono text-[11px] uppercase tracking-widest hover:opacity-60 transition-opacity"
+          className="absolute top-5 right-5 sm:top-6 sm:right-6 font-mono text-[11px] uppercase tracking-widest hover:opacity-60 transition-opacity"
           aria-label="Close"
         >
           Close
         </button>
 
-        <h3 className="font-heading text-2xl uppercase font-medium mb-6">
+        <h3 className="font-heading text-xl sm:text-2xl uppercase font-medium mb-6">
           Let's Talk
         </h3>
 

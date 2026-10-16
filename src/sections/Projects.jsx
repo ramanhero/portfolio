@@ -77,12 +77,15 @@ export default function Portfolio() {
   const CURSOR_SIZE = 100;
 
   return (
-    <section id="projects" className="w-full min-h-screen bg-bg-light rounded-b-[40px] p-4 sm:p-8">
+    <section id="projects" className="w-full min-h-0 bg-bg-light rounded-b-[32px] md:rounded-b-[40px] p-2.5 sm:p-6 md:p-8 overflow-hidden">
       <style>{`
-        .card-no-cursor, .card-no-cursor * { cursor: none !important; }
+        @media (min-width: 768px) {
+          .card-no-cursor, .card-no-cursor * { cursor: none !important; }
+        }
       `}</style>
+      {/* Custom arrow cursor only on desktop */}
       <div
-        className="pointer-events-none fixed top-0 left-0 z-[999] flex items-center justify-center rounded-full"
+        className="pointer-events-none fixed top-0 left-0 z-[999] hidden md:flex items-center justify-center rounded-full"
         style={{
           width: CURSOR_SIZE,
           height: CURSOR_SIZE,
@@ -105,8 +108,8 @@ export default function Portfolio() {
         />
       </div>
 
-      <div className="w-full max-w-[1504px] bg-white rounded-[32px] pt-[50px] pb-[40px] shadow-2xl">
-        <div className="relative text-center px-6 sm:px-16 pt-10 pb-14">
+      <div className="w-full max-w-[1504px] bg-white rounded-[24px] sm:rounded-[32px] pt-[30px] sm:pt-[50px] pb-[30px] sm:pb-[40px] shadow-2xl mx-auto overflow-hidden">
+        <div className="relative text-center px-4 sm:px-16 pt-6 sm:pt-10 pb-6 sm:pb-14">
           <button
             onClick={() => scrollByAmount(-420)}
             aria-label="Scroll left"
@@ -115,9 +118,14 @@ export default function Portfolio() {
             <ArrowIcon direction="left" />
           </button>
 
-          <h1 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-[#1A1A1A] leading-[1.05] uppercase pb-4">
+          <h1 className="font-heading text-[clamp(2rem,6vw,4.5rem)] font-bold text-[#1A1A1A] leading-[1.05] uppercase pb-2 sm:pb-4">
             Projects
           </h1>
+
+          {/* Mobile swipe hint */}
+          <p className="sm:hidden font-mono text-[10px] uppercase tracking-widest text-text-muted-light">
+            ← swipe cards →
+          </p>
 
           <button
             onClick={() => scrollByAmount(420)}
@@ -131,57 +139,55 @@ export default function Portfolio() {
         {/* Horizontally scrollable image gallery */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ml-[20px]"
+          className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-4 sm:px-8"
         >
-          {IMAGES.map((img, i) => (
+          {IMAGES.map((img) => (
             <div
               key={img.id}
               onMouseEnter={(e) => handleCardMouseEnter(e, img.id)}
               onMouseMove={handleCardMouseMove}
               onMouseLeave={handleCardMouseLeave}
-              className={`card-no-cursor relative shrink-0 snap-start rounded-[28px] overflow-hidden h-[420px] sm:h-[520px] md:h-[580px] w-[80%] sm:w-[47%] md:w-[28%] ${i === 0 ? "ml-6 sm:ml-16" : ""
-                } ${i === IMAGES.length - 1 ? "mr-6 sm:mr-16" : ""}`}
-              style={{ cursor: "none" }}
+              className="card-no-cursor relative shrink-0 snap-center sm:snap-start rounded-[22px] sm:rounded-[28px] overflow-hidden h-[390px] sm:h-[480px] md:h-[560px] w-[82vw] sm:w-[48%] md:w-[30%] max-w-[420px]"
             >
               <img
                 src={img.src}
                 alt={img.alt}
                 className="absolute inset-0 w-full h-full object-cover"
-                style={{ cursor: "none" }}
               />
 
               {img.variant === "featured" && (
                 <>
                   {/* Dark gradient overlay for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/10 to-black/70" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/20 to-black/80" />
 
                   {/* Top text content */}
-                  <div className="absolute top-0 left-0 right-0 p-7">
-                    <h3 className="text-white text-2xl sm:text-3xl font-serif font-bold tracking-tight mb-2.5 drop-shadow-md">
+                  <div className="absolute top-0 left-0 right-0 p-5 sm:p-7">
+                    <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-serif font-bold tracking-tight mb-2 drop-shadow-md">
                       {img.title}
                     </h3>
-                    <p className="text-white/85 text-[13px] sm:text-[14px] leading-relaxed max-w-[90%] font-sans opacity-95">
+                    <p className="text-white/85 text-[12px] sm:text-[13px] md:text-[14px] leading-relaxed max-w-full font-sans opacity-95">
                       {img.description}
                     </p>
                   </div>
 
                   {/* Bottom tags + icon */}
-                  <div className="absolute bottom-0 left-0 right-0 p-7 flex items-center justify-between">
-                    <div className="flex gap-2">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7 flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {img.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[12px] text-white/90 bg-white/15 backdrop-blur-sm px-3.5 py-1.5 rounded-full"
+                          className="text-[11px] sm:text-[12px] text-white/90 bg-white/15 backdrop-blur-sm px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
                     <div
-                      className={`w-9 h-9 rounded-full border border-white/50 flex items-center justify-center text-white shrink-0 transition-opacity duration-150 ${hoveredCardId === img.id ? "opacity-0" : "opacity-100"
-                        }`}
+                      className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/50 flex items-center justify-center text-white shrink-0 transition-opacity duration-150 ${
+                        hoveredCardId === img.id ? "opacity-0" : "opacity-100"
+                      }`}
                     >
-                      <ArrowIcon direction="down-right" size={14} />
+                      <ArrowIcon direction="down-right" size={13} />
                     </div>
                   </div>
                 </>
